@@ -41,9 +41,18 @@
     [self addSubview:self.webView];
 }
 
+- (id)init
+{
+    if (self = [super init])
+    {
+        [self _init];
+    }
+    return self;
+}
+
 - (id)initWithFrame:(CGRect)frame 
 {
-	if((self = [super initWithFrame:frame])) 
+	if (self = [super initWithFrame:frame]) 
     {
 		[self _init];
 	}
@@ -52,7 +61,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder 
 {
-	if((self = [super initWithCoder:aDecoder])) 
+	if (self = [super initWithCoder:aDecoder])
     {
 		[self _init];
 	}
