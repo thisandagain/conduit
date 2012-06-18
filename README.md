@@ -1,7 +1,7 @@
 ## Conduit
 #### JS to Objective-C... and back again
 
-DIYConduit was created to address three pain points present within many iOS applications that rely on UIWebView to present content to the user: 
+DIYConduit was created to address three pain points present within many iOS applications that rely on UIWebView: 
 - Communication from Javascript to Objective-C
 - Communication from Objective-C to Javascript
 - Handling custom HTTP headers between multiple requests 
@@ -70,7 +70,7 @@ Communication from JS to Objective-C is handled by the `sendMessage` function on
 ```javascript
 document.addEventListener('WebViewJavascriptBridgeReady', onBridgeReady, false);
 function onBridgeReady() {
-    WebViewJavascriptBridge.sendMessage('Hello from the magical land of Javascript. Unicorns! Rainbows! Substack!');
+    WebViewJavascriptBridge.sendMessage('Hello from the magical land of Javascript. Unicorns! Rainbows! Robots! Substack!');
 }
 ```
 
@@ -99,7 +99,7 @@ function onBridgeReady() {
 ```
 
 ## Custom HTTP Headers
-Custom headers can be a bit of a pain when using a vanilla UIWebView, so DIYConduit provides convience methods for creating and removing custom headers while persisting them through requests. Headers can be added and removed at will and will immediately reflected and persisted starting with the next HTTP request. 
+Custom headers can be a bit of a pain when using a vanilla UIWebView, so DIYConduit provides convenience methods for creating and removing custom headers while persisting them through requests. Headers can be added and removed at will and will immediately reflected and persisted starting with the next HTTP request. 
 
 ```objective-c
 [conduit addHeader:@"x-some-header" withValue:@"foo"];
@@ -123,7 +123,7 @@ Custom headers can be a bit of a pain when using a vanilla UIWebView, so DIYCond
 - (void)conduit:(DIYConduit *)conduit receivedMessage:(NSString *)message;
 ```
 
-## Properites
+## Properties
 ```objective-c
 @property (nonatomic, assign) id <DIYConduitDelegate> delegate;
 @property (nonatomic, retain) UIWebView *webView;
