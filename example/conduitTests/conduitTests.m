@@ -11,6 +11,7 @@
 @implementation conduitTests
 
 @synthesize conduit;
+@synthesize bridge;
 
 #pragma mark - Init
 
@@ -22,14 +23,15 @@
 - (void)tearDown
 {
     [conduit release]; conduit = nil;
+    [bridge release]; bridge = nil;
     
     [super tearDown];
 }
 
 #pragma mark - Suite
 
-- (void)testInstance
-{
+- (void)testBridgeInstance
+{    
     STAssertNil(nil, nil);
 }
 
