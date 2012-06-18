@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C3AF160D158E752D00EA444D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3AF160C158E752D00EA444D /* UIKit.framework */; };
+		C3AF160F158E752D00EA444D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3AF160E158E752D00EA444D /* Foundation.framework */; };
+		C3AF1611158E752D00EA444D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3AF1610158E752D00EA444D /* CoreGraphics.framework */; };
+		C3AF1617158E752D00EA444D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3AF1615158E752D00EA444D /* InfoPlist.strings */; };
+		C3AF1619158E752D00EA444D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AF1618158E752D00EA444D /* main.m */; };
+		C3AF161D158E752D00EA444D /* DIYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AF161C158E752D00EA444D /* DIYAppDelegate.m */; };
+		C3AF1620158E752D00EA444D /* DIYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AF161F158E752D00EA444D /* DIYViewController.m */; };
+		C3AF1623158E752D00EA444D /* DIYViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3AF1621158E752D00EA444D /* DIYViewController.xib */; };
+		C3AF162B158E752D00EA444D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3AF162A158E752D00EA444D /* SenTestingKit.framework */; };
+		C3AF162C158E752D00EA444D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3AF160C158E752D00EA444D /* UIKit.framework */; };
+		C3AF162D158E752D00EA444D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3AF160E158E752D00EA444D /* Foundation.framework */; };
+		C3AF1635158E752D00EA444D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3AF1633158E752D00EA444D /* InfoPlist.strings */; };
+		C3AF1638158E752D00EA444D /* conduitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AF1637158E752D00EA444D /* conduitTests.m */; };
+		C3AF1647158E766100EA444D /* DIYConduit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AF1646158E766100EA444D /* DIYConduit.m */; };
+		C3AF1649158E7A0100EA444D /* DIYConduit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AF1646158E766100EA444D /* DIYConduit.m */; };
+		C3AF1650158EA1F100EA444D /* DIYConduitBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AF164F158EA1F100EA444D /* DIYConduitBridge.m */; };
+		C3AF1652158EC4A800EA444D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C3AF1651158EC4A800EA444D /* README.md */; };
+		C3AF1654158EC4BA00EA444D /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = C3AF1653158EC4BA00EA444D /* LICENSE.md */; };
+		C3AF1655158ED61000EA444D /* DIYConduitBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AF164F158EA1F100EA444D /* DIYConduitBridge.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C3AF162E158E752D00EA444D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3AF15FF158E752C00EA444D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C3AF1607158E752D00EA444D;
+			remoteInfo = conduit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C3AF1608158E752D00EA444D /* conduit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = conduit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3AF160C158E752D00EA444D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C3AF160E158E752D00EA444D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C3AF1610158E752D00EA444D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C3AF1614158E752D00EA444D /* conduit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "conduit-Info.plist"; sourceTree = "<group>"; };
+		C3AF1616158E752D00EA444D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C3AF1618158E752D00EA444D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C3AF161A158E752D00EA444D /* conduit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "conduit-Prefix.pch"; sourceTree = "<group>"; };
+		C3AF161B158E752D00EA444D /* DIYAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DIYAppDelegate.h; sourceTree = "<group>"; };
+		C3AF161C158E752D00EA444D /* DIYAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DIYAppDelegate.m; sourceTree = "<group>"; };
+		C3AF161E158E752D00EA444D /* DIYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DIYViewController.h; sourceTree = "<group>"; };
+		C3AF161F158E752D00EA444D /* DIYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DIYViewController.m; sourceTree = "<group>"; };
+		C3AF1622158E752D00EA444D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DIYViewController.xib; sourceTree = "<group>"; };
+		C3AF1629158E752D00EA444D /* conduitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = conduitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3AF162A158E752D00EA444D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		C3AF1632158E752D00EA444D /* conduitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "conduitTests-Info.plist"; sourceTree = "<group>"; };
+		C3AF1634158E752D00EA444D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C3AF1636158E752D00EA444D /* conduitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = conduitTests.h; sourceTree = "<group>"; };
+		C3AF1637158E752D00EA444D /* conduitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = conduitTests.m; sourceTree = "<group>"; };
+		C3AF1645158E766100EA444D /* DIYConduit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DIYConduit.h; path = ../DIYConduit.h; sourceTree = "<group>"; };
+		C3AF1646158E766100EA444D /* DIYConduit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DIYConduit.m; path = ../DIYConduit.m; sourceTree = "<group>"; };
+		C3AF164E158EA1F100EA444D /* DIYConduitBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DIYConduitBridge.h; path = ../DIYConduitBridge.h; sourceTree = "<group>"; };
+		C3AF164F158EA1F100EA444D /* DIYConduitBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DIYConduitBridge.m; path = ../DIYConduitBridge.m; sourceTree = "<group>"; };
+		C3AF1651158EC4A800EA444D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C3AF1653158EC4BA00EA444D /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C3AF1605158E752D00EA444D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3AF160D158E752D00EA444D /* UIKit.framework in Frameworks */,
+				C3AF160F158E752D00EA444D /* Foundation.framework in Frameworks */,
+				C3AF1611158E752D00EA444D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3AF1625158E752D00EA444D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3AF162B158E752D00EA444D /* SenTestingKit.framework in Frameworks */,
+				C3AF162C158E752D00EA444D /* UIKit.framework in Frameworks */,
+				C3AF162D158E752D00EA444D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C3AF15FD158E752C00EA444D = {
+			isa = PBXGroup;
+			children = (
+				C3AF1645158E766100EA444D /* DIYConduit.h */,
+				C3AF1646158E766100EA444D /* DIYConduit.m */,
+				C3AF164E158EA1F100EA444D /* DIYConduitBridge.h */,
+				C3AF164F158EA1F100EA444D /* DIYConduitBridge.m */,
+				C3AF1651158EC4A800EA444D /* README.md */,
+				C3AF1653158EC4BA00EA444D /* LICENSE.md */,
+				C3AF1612158E752D00EA444D /* conduit */,
+				C3AF1630158E752D00EA444D /* conduitTests */,
+				C3AF160B158E752D00EA444D /* Frameworks */,
+				C3AF1609158E752D00EA444D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C3AF1609158E752D00EA444D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C3AF1608158E752D00EA444D /* conduit.app */,
+				C3AF1629158E752D00EA444D /* conduitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C3AF160B158E752D00EA444D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3AF160C158E752D00EA444D /* UIKit.framework */,
+				C3AF160E158E752D00EA444D /* Foundation.framework */,
+				C3AF1610158E752D00EA444D /* CoreGraphics.framework */,
+				C3AF162A158E752D00EA444D /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C3AF1612158E752D00EA444D /* conduit */ = {
+			isa = PBXGroup;
+			children = (
+				C3AF161B158E752D00EA444D /* DIYAppDelegate.h */,
+				C3AF161C158E752D00EA444D /* DIYAppDelegate.m */,
+				C3AF161E158E752D00EA444D /* DIYViewController.h */,
+				C3AF161F158E752D00EA444D /* DIYViewController.m */,
+				C3AF1621158E752D00EA444D /* DIYViewController.xib */,
+				C3AF1613158E752D00EA444D /* Supporting Files */,
+			);
+			path = conduit;
+			sourceTree = "<group>";
+		};
+		C3AF1613158E752D00EA444D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C3AF1614158E752D00EA444D /* conduit-Info.plist */,
+				C3AF1615158E752D00EA444D /* InfoPlist.strings */,
+				C3AF1618158E752D00EA444D /* main.m */,
+				C3AF161A158E752D00EA444D /* conduit-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C3AF1630158E752D00EA444D /* conduitTests */ = {
+			isa = PBXGroup;
+			children = (
+				C3AF1636158E752D00EA444D /* conduitTests.h */,
+				C3AF1637158E752D00EA444D /* conduitTests.m */,
+				C3AF1631158E752D00EA444D /* Supporting Files */,
+			);
+			path = conduitTests;
+			sourceTree = "<group>";
+		};
+		C3AF1631158E752D00EA444D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C3AF1632158E752D00EA444D /* conduitTests-Info.plist */,
+				C3AF1633158E752D00EA444D /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C3AF1607158E752D00EA444D /* conduit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3AF163B158E752D00EA444D /* Build configuration list for PBXNativeTarget "conduit" */;
+			buildPhases = (
+				C3AF1604158E752D00EA444D /* Sources */,
+				C3AF1605158E752D00EA444D /* Frameworks */,
+				C3AF1606158E752D00EA444D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = conduit;
+			productName = conduit;
+			productReference = C3AF1608158E752D00EA444D /* conduit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C3AF1628158E752D00EA444D /* conduitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3AF163E158E752D00EA444D /* Build configuration list for PBXNativeTarget "conduitTests" */;
+			buildPhases = (
+				C3AF1624158E752D00EA444D /* Sources */,
+				C3AF1625158E752D00EA444D /* Frameworks */,
+				C3AF1626158E752D00EA444D /* Resources */,
+				C3AF1627158E752D00EA444D /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C3AF162F158E752D00EA444D /* PBXTargetDependency */,
+			);
+			name = conduitTests;
+			productName = conduitTests;
+			productReference = C3AF1629158E752D00EA444D /* conduitTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C3AF15FF158E752C00EA444D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = DIY;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "DIY, Co.";
+			};
+			buildConfigurationList = C3AF1602158E752C00EA444D /* Build configuration list for PBXProject "conduit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C3AF15FD158E752C00EA444D;
+			productRefGroup = C3AF1609158E752D00EA444D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C3AF1607158E752D00EA444D /* conduit */,
+				C3AF1628158E752D00EA444D /* conduitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C3AF1606158E752D00EA444D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3AF1617158E752D00EA444D /* InfoPlist.strings in Resources */,
+				C3AF1623158E752D00EA444D /* DIYViewController.xib in Resources */,
+				C3AF1652158EC4A800EA444D /* README.md in Resources */,
+				C3AF1654158EC4BA00EA444D /* LICENSE.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3AF1626158E752D00EA444D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3AF1635158E752D00EA444D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C3AF1627158E752D00EA444D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C3AF1604158E752D00EA444D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3AF1619158E752D00EA444D /* main.m in Sources */,
+				C3AF161D158E752D00EA444D /* DIYAppDelegate.m in Sources */,
+				C3AF1620158E752D00EA444D /* DIYViewController.m in Sources */,
+				C3AF1647158E766100EA444D /* DIYConduit.m in Sources */,
+				C3AF1650158EA1F100EA444D /* DIYConduitBridge.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3AF1624158E752D00EA444D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3AF1655158ED61000EA444D /* DIYConduitBridge.m in Sources */,
+				C3AF1649158E7A0100EA444D /* DIYConduit.m in Sources */,
+				C3AF1638158E752D00EA444D /* conduitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C3AF162F158E752D00EA444D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C3AF1607158E752D00EA444D /* conduit */;
+			targetProxy = C3AF162E158E752D00EA444D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C3AF1615158E752D00EA444D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3AF1616158E752D00EA444D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C3AF1621158E752D00EA444D /* DIYViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3AF1622158E752D00EA444D /* en */,
+			);
+			name = DIYViewController.xib;
+			sourceTree = "<group>";
+		};
+		C3AF1633158E752D00EA444D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3AF1634158E752D00EA444D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C3AF1639158E752D00EA444D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C3AF163A158E752D00EA444D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C3AF163C158E752D00EA444D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "conduit/conduit-Prefix.pch";
+				INFOPLIST_FILE = "conduit/conduit-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C3AF163D158E752D00EA444D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "conduit/conduit-Prefix.pch";
+				INFOPLIST_FILE = "conduit/conduit-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C3AF163F158E752D00EA444D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/conduit.app/conduit";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "conduit/conduit-Prefix.pch";
+				INFOPLIST_FILE = "conduitTests/conduitTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = YES;
+				TEST_HOST = "";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		C3AF1640158E752D00EA444D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/conduit.app/conduit";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "conduit/conduit-Prefix.pch";
+				INFOPLIST_FILE = "conduitTests/conduitTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = YES;
+				TEST_HOST = "";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C3AF1602158E752C00EA444D /* Build configuration list for PBXProject "conduit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3AF1639158E752D00EA444D /* Debug */,
+				C3AF163A158E752D00EA444D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C3AF163B158E752D00EA444D /* Build configuration list for PBXNativeTarget "conduit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3AF163C158E752D00EA444D /* Debug */,
+				C3AF163D158E752D00EA444D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C3AF163E158E752D00EA444D /* Build configuration list for PBXNativeTarget "conduitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3AF163F158E752D00EA444D /* Debug */,
+				C3AF1640158E752D00EA444D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C3AF15FF158E752C00EA444D /* Project object */;
+}
