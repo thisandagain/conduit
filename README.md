@@ -9,7 +9,7 @@ DIYConduit was created to address three pain points present within many iOS appl
 DIYConduit simply wraps these three pieces of functionality into a nice little library with a simple API and lets you go on about your business.
 
 ## Basic Use
-The fastest way to get up and running with DIYConduit is to take a look at the included example application. The XCode project file can be found in "example > conduit.xcodeproj". But for those of you that put on your adventure pants today... read ahead:
+The fastest way to get up and running with DIYConduit is to take a look at the included example application. The XCode project file can be found in `example > conduit.xcodeproj`. But for those of you that put on your adventure pants today... read ahead:
 
 YourViewController.h
 ```objective-c
@@ -66,7 +66,7 @@ index.html
 ```
 
 ## JS to Objective-C
-Communication from JS to Objective-C is handled by the "sendMessage" function on the WebViewJavascriptBridge object. The function should only be called after the "WebViewJavascriptBridgeReady" event.
+Communication from JS to Objective-C is handled by the `sendMessage` function on the `WebViewJavascriptBridge` object. The function should only be called after the `WebViewJavascriptBridgeReady` event.
 ```javascript
 document.addEventListener('WebViewJavascriptBridgeReady', onBridgeReady, false);
 function onBridgeReady() {
@@ -83,12 +83,12 @@ Receipt of messages from JS is handled through the use of a delegate method.
 ```
 
 ## Objective-C to JS
-Communication from Objective-C to JS is handled by the "sendMessage" method. This method can be invoked at any time though messages will be queued until received by the web view.
+Communication from Objective-C to JS is handled by the `sendMessage` method. This method can be invoked at any time, though messages will be queued until received by the web view.
 ```objective-c
 [conduit sendMessage:@"Hello from Objective-C. *Beep* *Buzz* ... *Ding!*"];
 ```
 
-Similar to how messages are sent from JS, messages are received after the "WebViewJavascriptBridgeReady" has been called via the "setMessageHandler" function.
+Similar to how messages are sent from JS, messages are received after the `WebViewJavascriptBridgeReady` has been called via the `setMessageHandler`.
 ```javascript
 document.addEventListener('WebViewJavascriptBridgeReady', onBridgeReady, false);
 function onBridgeReady() {
@@ -129,6 +129,8 @@ Custom headers can be a bit of a pain when using a vanilla UIWebView, so DIYCond
 @property (nonatomic, retain) UIWebView *webView;
 @property (nonatomic, retain) NSMutableDictionary *headers;
 ```
+
+---
 
 ## ARC
 ARC is not supported at this time. It is most certainly on the big 'ol "to-do" list though.
