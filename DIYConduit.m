@@ -28,7 +28,7 @@
 - (void)_init
 {
     // Webview
-    self.webView            = [[UIWebView alloc] initWithFrame:self.frame];
+    self.webView            = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     
     // Bridge
     self.bridge             = [DIYConduitBridge javascriptBridgeWithDelegate:self];
