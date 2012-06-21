@@ -1,31 +1,41 @@
+//
+//  DIYConduitBridge.m
+//  conduit
+//
+//  Created by Andrew Sliwinski on 6/17/12.
+//  Based on WebViewJavascriptBridge by Marcus Westin, Stepan Generalov and Sergio Campamá.
+//
+
 #import "DIYConduitBridge.h"
 
+//
+
 @interface DIYConduitBridge ()
-
 @property (nonatomic,strong) NSMutableArray *startupMessageQueue;
-
 - (void)_flushMessageQueueFromWebView:(UIWebView *)webView;
 - (void)_doSendMessage:(NSString*)message toWebView:(UIWebView *)webView;
-
 @end
+
+//
 
 @implementation DIYConduitBridge
 
 @synthesize delegate = _delegate;
 @synthesize startupMessageQueue = _startupMessageQueue;
 
-static NSString *MESSAGE_SEPARATOR = @"__wvjb_sep__";
+static NSString *MESSAGE_SEPARATOR      = @"__wvjb_sep__";
 static NSString *CUSTOM_PROTOCOL_SCHEME = @"webviewjavascriptbridge";
-static NSString *QUEUE_HAS_MESSAGE = @"queuehasmessage";
+static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
 
 #pragma mark - Init
 
-+ (id)javascriptBridgeWithDelegate:(id <DIYConduitBridgeDelegate>)delegate 
+- (id)init
 {
-    DIYConduitBridge* bridge = [[[DIYConduitBridge alloc] init] autorelease];
-    bridge.delegate = delegate;
-	[bridge resetQueue];
-    return bridge;
+    if (self = [super init])
+    {
+        [self resetQueue];
+    }
+    return self;
 }
 
 #pragma mark - Public methods
@@ -58,7 +68,7 @@ static NSString *QUEUE_HAS_MESSAGE = @"queuehasmessage";
     }
 }
 
-#pragma mark UIWebViewDelegate
+#pragma mark - UIWebViewDelegate
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView 
 {

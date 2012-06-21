@@ -1,3 +1,11 @@
+//
+//  DIYConduitBridge.h
+//  conduit
+//
+//  Created by Andrew Sliwinski on 6/17/12.
+//  Based on WebViewJavascriptBridge by Marcus Westin, Stepan Generalov and Sergio Campamá.
+//
+
 #import <UIKit/UIKit.h>
 
 @class DIYConduitBridge;
@@ -12,9 +20,8 @@
 
 @interface DIYConduitBridge : NSObject <UIWebViewDelegate>
 
-@property (nonatomic, assign) IBOutlet id <DIYConduitBridgeDelegate> delegate;
+@property (nonatomic, assign) id <DIYConduitBridgeDelegate> delegate;
 
-+ (id)javascriptBridgeWithDelegate:(id <DIYConduitBridgeDelegate>)delegate;
 - (void)sendMessage:(NSString *)message toWebView:(UIWebView *)webView;
 - (void)resetQueue;
 
