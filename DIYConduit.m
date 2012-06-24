@@ -27,18 +27,14 @@
 
 - (void)_init
 {
-    // Webview
-    webView             = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    // Setup
+    self.webView        = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    self.bridge         = [[DIYConduitBridge alloc] init];
+    self.headers        = [[NSMutableDictionary alloc] init];
     
-    // Bridge
-    bridge              = [[DIYConduitBridge alloc] init];
-    
-    // Delegates
+    // Assign delegates
     bridge.delegate     = self;
     webView.delegate    = bridge;
-    
-    // Headers
-    headers             = [[NSMutableDictionary alloc] init];
     
     // Add to view
     [self addSubview:webView];
