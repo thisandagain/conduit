@@ -21,8 +21,10 @@
 @interface DIYConduitBridge : NSObject <UIWebViewDelegate>
 
 @property (nonatomic, assign) id <DIYConduitBridgeDelegate> delegate;
+@property (nonatomic, retain) NSMutableDictionary *requestHeaders;
 
 - (void)sendMessage:(NSString *)message toWebView:(UIWebView *)webView;
 - (void)resetQueue;
+- (void)pushRequestHeaders:(NSMutableDictionary *)headers;
 
 @end

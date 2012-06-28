@@ -21,6 +21,7 @@
 @implementation DIYConduitBridge
 
 @synthesize delegate = _delegate;
+@synthesize requestHeaders = _requestHeaders;
 @synthesize startupMessageQueue = _startupMessageQueue;
 
 static NSString *MESSAGE_SEPARATOR      = @"__wvjb_sep__";
@@ -50,6 +51,17 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
 {
     self.startupMessageQueue = [[[NSMutableArray alloc] init] autorelease];
 }
+
+- (void)pushRequestHeaders:(NSMutableDictionary *)headers
+{
+    if (!_requestHeaders) {
+        _requestHeaders = [[NSMutableDictionary alloc] init];
+    }
+
+    self.requestHeaders = headers;
+}
+
+#pragma mark - Private methods
 
 - (void)_doSendMessage:(NSString *)message toWebView:(UIWebView *)webView 
 {
@@ -121,6 +133,21 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
         "     _handleMessageFromObjC: _handleMessageFromObjC"
         "};"
         ""
+        "window.WebViewHeaders = {};"
+        ""
+        "XMLHttpRequest.prototype.open = (function() {"
+        "     var base = XMLHttpRequest.prototype.open;"
+        "     return function() {"
+        "          base.apply(this, arguments);"
+        "          for (var name in WebViewHeaders) {"
+        "               if (WebViewHeaders.hasOwnProperty(name)) {"
+        "                    try { this.setRequestHeader(name, WebViewHeaders[name]); }"
+        "                    catch(e) { }"
+        "               }"
+        "          }"
+        "     }"
+        "})();"
+        ""
         "var doc = document;"
         "_createQueueReadyIframe(doc);"
         "var readyEvent = doc.createEvent('Events');"
@@ -143,6 +170,13 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
     }
 
     self.startupMessageQueue = nil;
+
+    for (id item in self.requestHeaders)
+    {
+        if ([item isKindOfClass:[NSString class]]) {
+            [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"WebViewHeaders['%@']='%@';", item, [self.requestHeaders valueForKey:item]]];
+        }
+    }
 
     if (self.delegate != nil && [self.delegate respondsToSelector:@selector(webViewDidFinishLoad:)]) 
     {
@@ -193,7 +227,8 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
 - (void)dealloc 
 {
     _delegate = nil;
-    [_startupMessageQueue release];
+    [_requestHeaders release]; _requestHeaders = nil;
+    [_startupMessageQueue release]; _startupMessageQueue = nil;
     
     [super dealloc];
 }
