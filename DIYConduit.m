@@ -18,26 +18,26 @@
 
 @implementation DIYConduit
 
-@synthesize delegate;
-@synthesize webView;
-@synthesize bridge;
-@synthesize headers;
+@synthesize delegate = _delegate;
+@synthesize webView = _webView;
+@synthesize bridge = _bridge;
+@synthesize headers = _headers;
 
 #pragma mark - Init
 
 - (void)_init
 {
     // Setup
-    self.webView        = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    self.bridge         = [[DIYConduitBridge alloc] init];
-    self.headers        = [[NSMutableDictionary alloc] init];
+    _webView        = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    _bridge         = [[DIYConduitBridge alloc] init];
+    _headers        = [[NSMutableDictionary alloc] init];
     
     // Assign delegates
-    bridge.delegate     = self;
-    webView.delegate    = bridge;
+    self.bridge.delegate     = self;
+    self.webView.delegate    = self.bridge;
     
     // Add to view
-    [self addSubview:webView];
+    [self addSubview:self.webView];
 }
 
 - (id)init
@@ -78,8 +78,8 @@
  */
 - (void)loadRequest:(NSURLRequest *)request
 {
-    [webView loadRequest:[self generateMutableRequestWithRequest:request andHeaders:headers]];
-    [bridge pushRequestHeaders:headers];
+    [self.webView loadRequest:[self generateMutableRequestWithRequest:request andHeaders:self.headers]];
+    [bridge pushRequestHeaders:self.headers];
 }
 
 /**
@@ -92,7 +92,7 @@
  */
 - (void)loadHTMLString:(NSString *)html baseURL:(NSURL *)baseURL
 {
-    [webView loadHTMLString:html baseURL:baseURL];
+    [self.webView loadHTMLString:html baseURL:baseURL];
 }
 
 /**
@@ -105,7 +105,7 @@
  */
 - (void)addHeader:(NSString *)key withValue:(NSString *)value
 {
-    [headers setValue:value forKey:[key lowercaseString]];
+    [self.headers setValue:value forKey:[key lowercaseString]];
 }
 
 /**
@@ -117,7 +117,7 @@
  */
 - (void)removeHeader:(NSString *)key
 {
-    [headers setValue:nil forKey:[key lowercaseString]];
+    [self.headers setValue:nil forKey:[key lowercaseString]];
 }
 
 /**
@@ -129,7 +129,7 @@
  */
 - (void)sendMessage:(NSString *)message
 {
-    [bridge sendMessage:message toWebView:webView];
+    [self.bridge sendMessage:message toWebView:self.webView];
 }
 
 /**
@@ -147,9 +147,9 @@
 - (NSMutableURLRequest *)generateMutableRequestWithRequest:(NSURLRequest *)_request andHeaders:(NSDictionary *)_headers
 {
     NSMutableURLRequest *mutableRequest = [[_request mutableCopy] autorelease];
-    for (NSString *key in headers)
+    for (NSString *key in self.headers)
     {
-        [mutableRequest setValue:[headers valueForKey:key] forHTTPHeaderField:key];
+        [mutableRequest setValue:[self.headers valueForKey:key] forHTTPHeaderField:key];
     }
     
     return mutableRequest;
@@ -170,18 +170,15 @@
     NSDictionary *existingHeaders   = [request allHTTPHeaderFields];
     
     // Check that custom headers exist
-    for (NSString *key in headers)
-    {
-        if ([existingHeaders objectForKey:key] == nil)
-        {
+    for (NSString *key in self.headers) {
+        if ([existingHeaders objectForKey:key] == nil) {
             customHeadersExist = false;
             break;
         }
     }
     
     // If not, append them to the request
-    if (!customHeadersExist)
-    {
+    if (!customHeadersExist) {
         [self loadRequest:request];
         return false;
     }
@@ -193,18 +190,18 @@
 
 - (void)javascriptBridge:(DIYConduitBridge *)bridge receivedMessage:(NSString *)message fromWebView:(UIWebView *)webView
 {
-    [delegate conduit:self receivedMessage:message];
+    [self.delegate conduit:self receivedMessage:message];
 }
 
 #pragma mark - Dealloc
 
 - (void)releaseObjects
 {
-    delegate = nil;
+    self.delegate = nil;
     
-    [webView release]; webView = nil;
-    [bridge release]; bridge = nil;
-    [headers release]; headers = nil;
+    [_webView release]; _webView = nil;
+    [_bridge release]; _bridge = nil;
+    [_headers release]; _headers = nil;
 }
 
 - (void)dealloc
