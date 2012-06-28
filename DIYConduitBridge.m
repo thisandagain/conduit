@@ -250,7 +250,8 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
 
 - (void)dealloc 
 {
-    _delegate = nil;
+    self.delegate = nil;
+    
     [_requestHeaders release]; _requestHeaders = nil;
     [_startupMessageQueue release]; _startupMessageQueue = nil;
     
