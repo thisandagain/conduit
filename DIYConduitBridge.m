@@ -32,8 +32,8 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
 
 - (id)init
 {
-    if (self = [super init])
-    {
+    self = [super init];
+    if (self) {
         [self resetQueue];
     }
     return self;
@@ -41,17 +41,40 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
 
 #pragma mark - Public methods
 
+/**
+ * Sends a message to the specified web view.
+ *
+ * @param {NSString} Message
+ * @param {UIWebView} Web view instance
+ *
+ * @return {void}
+ */
 - (void)sendMessage:(NSString *)message toWebView:(UIWebView *)webView 
 {
-    if (self.startupMessageQueue) { [self.startupMessageQueue addObject:message]; }
-    else { [self _doSendMessage:message toWebView: webView]; }
+    if (self.startupMessageQueue) { 
+        [self.startupMessageQueue addObject:message]; 
+    } else { 
+        [self _doSendMessage:message toWebView: webView]; 
+    }
 }
 
+/**
+ * Resets the message queue.
+ *
+ * @return {void}
+ */
 - (void)resetQueue 
 {
     self.startupMessageQueue = [[[NSMutableArray alloc] init] autorelease];
 }
 
+/**
+ * Pushes custom headers that are used by the javascript bridge for AJAX requests.
+ *
+ * @param {NSMutableDictionary} Custom headers
+ *
+ * @return {void}
+ */
 - (void)pushRequestHeaders:(NSMutableDictionary *)headers
 {
     if (!_requestHeaders) {
@@ -159,27 +182,28 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
         CUSTOM_PROTOCOL_SCHEME,
         QUEUE_HAS_MESSAGE];
     
-    if (![[webView stringByEvaluatingJavaScriptFromString:@"typeof WebViewJavascriptBridge == 'object'"] isEqualToString:@"true"]) 
-    {
+    // Send javascript adapter to the webview
+    if (![[webView stringByEvaluatingJavaScriptFromString:@"typeof WebViewJavascriptBridge == 'object'"] isEqualToString:@"true"]) {
         [webView stringByEvaluatingJavaScriptFromString:js];
     }
     
-    for (id message in self.startupMessageQueue) 
-    {
-        [self _doSendMessage:message toWebView: webView];
-    }
-
-    self.startupMessageQueue = nil;
-
-    for (id item in self.requestHeaders)
-    {
+    // Send custom request headers to the javascript adapter
+    for (id item in self.requestHeaders) {
         if ([item isKindOfClass:[NSString class]]) {
             [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"WebViewHeaders['%@']='%@';", item, [self.requestHeaders valueForKey:item]]];
         }
     }
+    
+    // Send messages from the queue
+    for (id message in self.startupMessageQueue) {
+        [self _doSendMessage:message toWebView: webView];
+    }
 
-    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(webViewDidFinishLoad:)]) 
-    {
+    // Reset the startup message queue
+    self.startupMessageQueue = nil;
+
+    // Forward webview delegate page load events to the bridge
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(webViewDidFinishLoad:)]) {
         [self.delegate webViewDidFinishLoad:webView];
     }
 }
