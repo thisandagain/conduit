@@ -51,20 +51,20 @@
 
 - (id)initWithFrame:(CGRect)frame 
 {
-	if (self = [super initWithFrame:frame]) 
+    if (self = [super initWithFrame:frame])
     {
-		[self _init];
-	}
-	return self;
+        [self _init];
+    }
+    return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder 
 {
-	if (self = [super initWithCoder:aDecoder])
+    if (self = [super initWithCoder:aDecoder])
     {
-		[self _init];
-	}
-	return self;
+        [self _init];
+    }
+    return self;
 }
 
 #pragma mark - Public methods
@@ -79,7 +79,7 @@
 - (void)loadRequest:(NSURLRequest *)request
 {
     [webView loadRequest:[self generateMutableRequestWithRequest:request andHeaders:headers]];
-	[bridge pushRequestHeaders:headers];
+    [bridge pushRequestHeaders:headers];
 }
 
 /**
