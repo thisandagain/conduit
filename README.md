@@ -99,7 +99,7 @@ function onBridgeReady() {
 ```
 
 ## Custom HTTP Headers
-Custom headers can be a bit of a pain when using a vanilla UIWebView, so DIYConduit provides convenience methods for creating and removing custom headers while persisting them through requests. Headers can be added and removed at will and will immediately reflected and persisted starting with the next HTTP request. 
+Custom headers can be a bit of a pain when using a vanilla UIWebView, so DIYConduit provides convenience methods for creating and removing custom headers while persisting them through requests. Headers can be added and removed at will and will immediately reflected and persisted starting with the next HTTP request. Furthermore, headers are persisted during AJAX requests via a bit of javascript hackery through the bridge.
 
 ```objective-c
 [conduit addHeader:@"x-some-header" withValue:@"foo"];
