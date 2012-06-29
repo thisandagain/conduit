@@ -79,7 +79,7 @@
 - (void)loadRequest:(NSURLRequest *)request
 {
     [self.webView loadRequest:[self generateMutableRequestWithRequest:request andHeaders:self.headers]];
-    [bridge pushRequestHeaders:self.headers];
+    [self.bridge pushRequestHeaders:self.headers];
 }
 
 /**
