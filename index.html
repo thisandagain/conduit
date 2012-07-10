@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Conduit : JS to Objective-C... and back again." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Conduit</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/thisandagain/conduit">View on GitHub</a>
+
+          <h1 id="project_title">Conduit</h1>
+          <h2 id="project_tagline">JS to Objective-C... and back again.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/thisandagain/conduit/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/thisandagain/conduit/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>JS to Objective-C... and back again</h3>
+
+<p>DIYConduit was created to address three pain points present within many iOS applications that rely on UIWebView: </p>
+
+<ul>
+<li>Communication from Javascript to Objective-C</li>
+<li>Communication from Objective-C to Javascript</li>
+<li>Handling custom HTTP headers between multiple requests </li>
+</ul><p>DIYConduit simply wraps these three pieces of functionality into a nice little library with a simple API and lets you go on about your business.</p>
+
+<h2>Basic Use</h2>
+
+<p>The fastest way to get up and running with DIYConduit is to take a look at the included example application. The XCode project file can be found in <code>example &gt; conduit.xcodeproj</code>. But for those of you that put on your adventure pants today... read ahead:</p>
+
+<p>YourViewController.h</p>
+
+<div class="highlight">
+<pre><span class="cp">#import &lt;UIKit/UIKit.h&gt;</span>
+<span class="cp">#import "DIYConduit.h"</span>
+
+<span class="k">@interface</span> <span class="nc">YourViewController</span> : <span class="nc">UIViewController</span> <span class="o">&lt;</span><span class="n">DIYConduitDelegate</span><span class="o">&gt;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="kt">IBOutlet</span> <span class="n">DIYConduit</span> <span class="o">*</span><span class="n">conduit</span><span class="p">;</span>
+<span class="k">@end</span>
+</pre>
+</div>
+
+
+<p>YourViewController.m</p>
+
+<div class="highlight">
+<pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="n">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+
+    <span class="p">[</span><span class="n">conduit</span> <span class="nl">setDelegate:</span><span class="n">self</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">conduit</span> <span class="nl">loadRequest:</span><span class="p">[</span><span class="n">NSURLRequest</span> <span class="nl">requestWithURL:</span><span class="p">[</span><span class="n">NSURL</span> <span class="nl">URLWithString:</span><span class="s">@"http://my.awesomecats.com/index.html"</span><span class="p">]]];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">conduit:</span><span class="p">(</span><span class="n">DIYConduit</span> <span class="o">*</span><span class="p">)</span><span class="nv">conduit</span> <span class="nf">receivedMessage:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">message</span>
+<span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"%@"</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>index.html</p>
+
+<div class="highlight">
+<pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;style </span><span class="na">type=</span><span class="s">'text/css'</span><span class="nt">&gt;body</span> <span class="p">{</span> <span class="k">font-family</span><span class="o">:</span> <span class="n">Helvetica</span><span class="p">;</span> <span class="p">}</span> <span class="nt">h1</span> <span class="p">{</span> <span class="k">color</span><span class="o">:</span><span class="m">#333</span><span class="p">;</span> <span class="p">}</span><span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Conduit Demo<span class="nt">&lt;/h1&gt;</span>
+
+        <span class="nt">&lt;script&gt;</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'WebViewJavascriptBridgeReady'</span><span class="p">,</span> <span class="nx">onBridgeReady</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+            <span class="kd">function</span> <span class="nx">onBridgeReady</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">WebViewJavascriptBridge</span><span class="p">.</span><span class="nx">setMessageHandler</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'div'</span><span class="p">));</span>
+                    <span class="nx">el</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">message</span><span class="p">;</span>
+                <span class="p">});</span>
+
+                <span class="nx">WebViewJavascriptBridge</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'hello from the JS'</span><span class="p">);</span>
+                <span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'button'</span><span class="p">));</span>
+                <span class="nx">button</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">'Click me to send a message to ObjC'</span><span class="p">;</span>
+                <span class="nx">button</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="nx">button</span><span class="p">.</span><span class="nx">ontouchup</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">WebViewJavascriptBridge</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'hello from JS button'</span><span class="p">);</span> <span class="p">};</span>
+            <span class="p">}</span>
+        <span class="nt">&lt;/script&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre>
+</div>
+
+
+<h2>JS to Objective-C</h2>
+
+<p>Communication from JS to Objective-C is handled by the <code>sendMessage</code> function on the <code>WebViewJavascriptBridge</code> object. The function should only be called after the <code>WebViewJavascriptBridgeReady</code> event.</p>
+
+<div class="highlight">
+<pre><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'WebViewJavascriptBridgeReady'</span><span class="p">,</span> <span class="nx">onBridgeReady</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">onBridgeReady</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">WebViewJavascriptBridge</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'Hello from the magical land of Javascript. Unicorns! Rainbows! Robots! Substack!'</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>Receipt of messages from JS is handled through the use of a delegate method.</p>
+
+<div class="highlight">
+<pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">conduit:</span><span class="p">(</span><span class="n">DIYConduit</span> <span class="o">*</span><span class="p">)</span><span class="nv">conduit</span> <span class="nf">receivedMessage:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">message</span>
+<span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"%@"</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<h2>Objective-C to JS</h2>
+
+<p>Communication from Objective-C to JS is handled by the <code>sendMessage</code> method. This method can be invoked at any time, though messages will be queued until received by the web view.</p>
+
+<div class="highlight">
+<pre><span class="p">[</span><span class="n">conduit</span> <span class="nl">sendMessage:</span><span class="s">@"Hello from Objective-C. *Beep* *Buzz* ... *Ding!*"</span><span class="p">];</span>
+</pre>
+</div>
+
+
+<p>Similar to how messages are sent from JS, messages are received after the <code>WebViewJavascriptBridgeReady</code> has been called via the <code>setMessageHandler</code>.</p>
+
+<div class="highlight">
+<pre><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'WebViewJavascriptBridgeReady'</span><span class="p">,</span> <span class="nx">onBridgeReady</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">onBridgeReady</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">WebViewJavascriptBridge</span><span class="p">.</span><span class="nx">setMessageHandler</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<h2>Custom HTTP Headers</h2>
+
+<p>Custom headers can be a bit of a pain when using a vanilla UIWebView, so DIYConduit provides convenience methods for creating and removing custom headers while persisting them through requests. Headers can be added and removed at will and will immediately reflected and persisted starting with the next HTTP request. Furthermore, headers are persisted during AJAX requests via a bit of javascript hackery through the bridge.</p>
+
+<div class="highlight">
+<pre><span class="p">[</span><span class="n">conduit</span> <span class="nl">addHeader:</span><span class="s">@"x-some-header"</span> <span class="nl">withValue:</span><span class="s">@"foo"</span><span class="p">];</span>
+<span class="p">[</span><span class="n">conduit</span> <span class="nl">removeHeader:</span><span class="s">@"x-something-else"</span><span class="p">];</span>
+</pre>
+</div>
+
+
+<hr><h2>Methods</h2>
+
+<div class="highlight">
+<pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">loadRequest:</span><span class="p">(</span><span class="n">NSURLRequest</span> <span class="o">*</span><span class="p">)</span><span class="nv">request</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">loadHTMLString:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">html</span> <span class="nf">baseURL:</span><span class="p">(</span><span class="n">NSURL</span> <span class="o">*</span><span class="p">)</span><span class="nv">baseURL</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addHeader:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">key</span> <span class="nf">withValue:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">value</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">removeHeader:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">key</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">sendMessage:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">message</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">resetMessageQueue</span><span class="p">;</span>
+</pre>
+</div>
+
+
+<h2>Delegate Methods</h2>
+
+<div class="highlight">
+<pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">conduit:</span><span class="p">(</span><span class="n">DIYConduit</span> <span class="o">*</span><span class="p">)</span><span class="nv">conduit</span> <span class="nf">receivedMessage:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">message</span><span class="p">;</span>
+</pre>
+</div>
+
+
+<h2>Properties</h2>
+
+<div class="highlight">
+<pre><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">assign</span><span class="p">)</span> <span class="kt">id</span> <span class="o">&lt;</span><span class="n">DIYConduitDelegate</span><span class="o">&gt;</span> <span class="n">delegate</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">UIWebView</span> <span class="o">*</span><span class="n">webView</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">NSMutableDictionary</span> <span class="o">*</span><span class="n">headers</span><span class="p">;</span>
+</pre>
+</div>
+
+
+<hr><h2>ARC</h2>
+
+<p>ARC is not supported at this time. It is most certainly on the big 'ol "to-do" list though.</p>
+
+<h2>Credits</h2>
+
+<p>Conduit's Objective-C to JS bridge is based on <a href="https://github.com/marcuswestin/WebViewJavascriptBridge">WebViewJavascriptBridge</a> by Marcus Westin, Stepan Generalov and Sergio Campamá. </p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Conduit maintained by <a href="https://github.com/thisandagain">thisandagain</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-33281153-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
