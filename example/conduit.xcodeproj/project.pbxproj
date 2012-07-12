@@ -20,12 +20,10 @@
 		C3AF162D158E752D00EA444D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3AF160E158E752D00EA444D /* Foundation.framework */; };
 		C3AF1635158E752D00EA444D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3AF1633158E752D00EA444D /* InfoPlist.strings */; };
 		C3AF1638158E752D00EA444D /* conduitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AF1637158E752D00EA444D /* conduitTests.m */; };
-		C3AF1647158E766100EA444D /* DIYConduit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AF1646158E766100EA444D /* DIYConduit.m */; };
-		C3AF1649158E7A0100EA444D /* DIYConduit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AF1646158E766100EA444D /* DIYConduit.m */; };
-		C3AF1650158EA1F100EA444D /* DIYConduitBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AF164F158EA1F100EA444D /* DIYConduitBridge.m */; };
 		C3AF1652158EC4A800EA444D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C3AF1651158EC4A800EA444D /* README.md */; };
 		C3AF1654158EC4BA00EA444D /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = C3AF1653158EC4BA00EA444D /* LICENSE.md */; };
-		C3AF1655158ED61000EA444D /* DIYConduitBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AF164F158EA1F100EA444D /* DIYConduitBridge.m */; };
+		DE7B1BB515AE8E640017E5D8 /* DIYConduit.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7B1BB215AE8E640017E5D8 /* DIYConduit.m */; };
+		DE7B1BB615AE8E640017E5D8 /* DIYConduitBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7B1BB415AE8E640017E5D8 /* DIYConduitBridge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,12 +56,12 @@
 		C3AF1634158E752D00EA444D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C3AF1636158E752D00EA444D /* conduitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = conduitTests.h; sourceTree = "<group>"; };
 		C3AF1637158E752D00EA444D /* conduitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = conduitTests.m; sourceTree = "<group>"; };
-		C3AF1645158E766100EA444D /* DIYConduit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DIYConduit.h; path = ../DIYConduit.h; sourceTree = "<group>"; };
-		C3AF1646158E766100EA444D /* DIYConduit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DIYConduit.m; path = ../DIYConduit.m; sourceTree = "<group>"; };
-		C3AF164E158EA1F100EA444D /* DIYConduitBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DIYConduitBridge.h; path = ../DIYConduitBridge.h; sourceTree = "<group>"; };
-		C3AF164F158EA1F100EA444D /* DIYConduitBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DIYConduitBridge.m; path = ../DIYConduitBridge.m; sourceTree = "<group>"; };
 		C3AF1651158EC4A800EA444D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C3AF1653158EC4BA00EA444D /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
+		DE7B1BB115AE8E640017E5D8 /* DIYConduit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIYConduit.h; sourceTree = "<group>"; };
+		DE7B1BB215AE8E640017E5D8 /* DIYConduit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIYConduit.m; sourceTree = "<group>"; };
+		DE7B1BB315AE8E640017E5D8 /* DIYConduitBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIYConduitBridge.h; sourceTree = "<group>"; };
+		DE7B1BB415AE8E640017E5D8 /* DIYConduitBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIYConduitBridge.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,10 +91,7 @@
 		C3AF15FD158E752C00EA444D = {
 			isa = PBXGroup;
 			children = (
-				C3AF1645158E766100EA444D /* DIYConduit.h */,
-				C3AF1646158E766100EA444D /* DIYConduit.m */,
-				C3AF164E158EA1F100EA444D /* DIYConduitBridge.h */,
-				C3AF164F158EA1F100EA444D /* DIYConduitBridge.m */,
+				DE7B1BB015AE8E640017E5D8 /* DIYConduit */,
 				C3AF1651158EC4A800EA444D /* README.md */,
 				C3AF1653158EC4BA00EA444D /* LICENSE.md */,
 				C3AF1612158E752D00EA444D /* conduit */,
@@ -167,6 +162,18 @@
 				C3AF1633158E752D00EA444D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DE7B1BB015AE8E640017E5D8 /* DIYConduit */ = {
+			isa = PBXGroup;
+			children = (
+				DE7B1BB115AE8E640017E5D8 /* DIYConduit.h */,
+				DE7B1BB215AE8E640017E5D8 /* DIYConduit.m */,
+				DE7B1BB315AE8E640017E5D8 /* DIYConduitBridge.h */,
+				DE7B1BB415AE8E640017E5D8 /* DIYConduitBridge.m */,
+			);
+			name = DIYConduit;
+			path = ../DIYConduit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,8 +289,8 @@
 				C3AF1619158E752D00EA444D /* main.m in Sources */,
 				C3AF161D158E752D00EA444D /* DIYAppDelegate.m in Sources */,
 				C3AF1620158E752D00EA444D /* DIYViewController.m in Sources */,
-				C3AF1647158E766100EA444D /* DIYConduit.m in Sources */,
-				C3AF1650158EA1F100EA444D /* DIYConduitBridge.m in Sources */,
+				DE7B1BB515AE8E640017E5D8 /* DIYConduit.m in Sources */,
+				DE7B1BB615AE8E640017E5D8 /* DIYConduitBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,8 +298,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3AF1655158ED61000EA444D /* DIYConduitBridge.m in Sources */,
-				C3AF1649158E7A0100EA444D /* DIYConduit.m in Sources */,
 				C3AF1638158E752D00EA444D /* conduitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
