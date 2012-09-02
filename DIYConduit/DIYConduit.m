@@ -12,16 +12,12 @@
 
 @interface DIYConduit ()
 @property (nonatomic, retain) DIYConduitBridge *bridge;
+@property (readwrite) NSMutableDictionary *headers;
 @end
 
 //
 
 @implementation DIYConduit
-
-@synthesize delegate = _delegate;
-@synthesize webView = _webView;
-@synthesize bridge = _bridge;
-@synthesize headers = _headers;
 
 #pragma mark - Init
 
@@ -42,8 +38,8 @@
 
 - (id)init
 {
-    if (self = [super init])
-    {
+    self = [super init];
+    if (self) {
         [self _init];
     }
     return self;
@@ -51,8 +47,8 @@
 
 - (id)initWithFrame:(CGRect)frame 
 {
-    if (self = [super initWithFrame:frame])
-    {
+    self = [super initWithFrame:frame];
+    if (self) {
         [self _init];
     }
     return self;
@@ -60,8 +56,8 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder 
 {
-    if (self = [super initWithCoder:aDecoder])
-    {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
         [self _init];
     }
     return self;
@@ -78,8 +74,11 @@
  */
 - (void)loadRequest:(NSURLRequest *)request
 {
-    [self.webView loadRequest:[self generateMutableRequestWithRequest:request andHeaders:self.headers]];
-    [self.bridge pushRequestHeaders:self.headers];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_async(queue, ^{
+        [self.webView loadRequest:[self generateMutableRequestWithRequest:request andHeaders:self.headers]];
+        [self.bridge pushRequestHeaders:self.headers];
+    });
 }
 
 /**
@@ -92,7 +91,10 @@
  */
 - (void)loadHTMLString:(NSString *)html baseURL:(NSURL *)baseURL
 {
-    [self.webView loadHTMLString:html baseURL:baseURL];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_async(queue, ^{
+        [self.webView loadHTMLString:html baseURL:baseURL];
+    });
 }
 
 /**
@@ -146,9 +148,8 @@
 
 - (NSMutableURLRequest *)generateMutableRequestWithRequest:(NSURLRequest *)_request andHeaders:(NSDictionary *)_headers
 {
-    NSMutableURLRequest *mutableRequest = [[_request mutableCopy] autorelease];
-    for (NSString *key in self.headers)
-    {
+    NSMutableURLRequest *mutableRequest = [_request mutableCopy];
+    for (NSString *key in self.headers) {
         [mutableRequest setValue:[self.headers valueForKey:key] forHTTPHeaderField:key];
     }
     
@@ -160,8 +161,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     // Check for local request & bypass custom headers logic
-    if ([[[request URL] absoluteString] isEqualToString:@"about:blank"])
-    {
+    if ([[[request URL] absoluteString] isEqualToString:@"about:blank"]) {
         return true;
     }
     
@@ -195,19 +195,13 @@
 
 #pragma mark - Dealloc
 
-- (void)releaseObjects
+- (void)dealloc
 {
     self.delegate = nil;
     
-    [_webView release]; _webView = nil;
-    [_bridge release]; _bridge = nil;
-    [_headers release]; _headers = nil;
-}
-
-- (void)dealloc
-{
-    [self releaseObjects];
-    [super dealloc];
+    _webView = nil;
+    _bridge = nil;
+    _headers = nil;
 }
 
 @end

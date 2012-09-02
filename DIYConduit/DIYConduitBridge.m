@@ -65,7 +65,7 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
  */
 - (void)resetQueue 
 {
-    self.startupMessageQueue = [[[NSMutableArray alloc] init] autorelease];
+    self.startupMessageQueue = [[NSMutableArray alloc] init];
 }
 
 /**
@@ -92,6 +92,7 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
     message = [message stringByReplacingOccurrencesOfString:@"\n" withString:@"\\\n"];
     message = [message stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
     message = [message stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    message = [message stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
     [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"WebViewJavascriptBridge._handleMessageFromObjC('%@');", message]];
 }
 
@@ -252,10 +253,8 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
 {
     self.delegate = nil;
     
-    [_requestHeaders release]; _requestHeaders = nil;
-    [_startupMessageQueue release]; _startupMessageQueue = nil;
-    
-    [super dealloc];
+    _requestHeaders = nil;
+    _startupMessageQueue = nil;
 }
 
 @end

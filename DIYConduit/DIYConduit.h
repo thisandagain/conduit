@@ -24,9 +24,9 @@
     @private DIYConduitBridge *bridge;
 }
 
-@property (nonatomic, assign) id <DIYConduitDelegate> delegate;
-@property (nonatomic, retain) UIWebView *webView;
-@property (nonatomic, retain) NSMutableDictionary *headers;
+@property id <DIYConduitDelegate> delegate;
+@property UIWebView *webView;
+@property (readonly) NSMutableDictionary *headers;
 
 - (void)loadRequest:(NSURLRequest *)request;
 - (void)loadHTMLString:(NSString *)html baseURL:(NSURL *)baseURL;
