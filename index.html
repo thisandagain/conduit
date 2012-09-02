@@ -31,7 +31,7 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>JS to Objective-C... and back again</h3>
+        <h4>JS to Objective-C... and back again</h4>
 
 <p>DIYConduit was created to address three pain points present within many iOS applications that rely on UIWebView: </p>
 
@@ -47,21 +47,17 @@
 
 <p>YourViewController.h</p>
 
-<div class="highlight">
-<pre><span class="cp">#import &lt;UIKit/UIKit.h&gt;</span>
+<div class="highlight"><pre><span class="cp">#import &lt;UIKit/UIKit.h&gt;</span>
 <span class="cp">#import "DIYConduit.h"</span>
 
 <span class="k">@interface</span> <span class="nc">YourViewController</span> : <span class="nc">UIViewController</span> <span class="o">&lt;</span><span class="n">DIYConduitDelegate</span><span class="o">&gt;</span>
 <span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="kt">IBOutlet</span> <span class="n">DIYConduit</span> <span class="o">*</span><span class="n">conduit</span><span class="p">;</span>
 <span class="k">@end</span>
-</pre>
-</div>
-
+</pre></div>
 
 <p>YourViewController.m</p>
 
-<div class="highlight">
-<pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span>
+<div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span>
 <span class="p">{</span>
     <span class="p">[</span><span class="n">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
 
@@ -73,14 +69,11 @@
 <span class="p">{</span>
     <span class="n">NSLog</span><span class="p">(</span><span class="s">@"%@"</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
 <span class="p">}</span>
-</pre>
-</div>
-
+</pre></div>
 
 <p>index.html</p>
 
-<div class="highlight">
-<pre><span class="cp">&lt;!doctype html&gt;</span>
+<div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
     <span class="nt">&lt;head&gt;</span>
         <span class="nt">&lt;style </span><span class="na">type=</span><span class="s">'text/css'</span><span class="nt">&gt;body</span> <span class="p">{</span> <span class="k">font-family</span><span class="o">:</span> <span class="n">Helvetica</span><span class="p">;</span> <span class="p">}</span> <span class="nt">h1</span> <span class="p">{</span> <span class="k">color</span><span class="o">:</span><span class="m">#333</span><span class="p">;</span> <span class="p">}</span><span class="nt">&lt;/style&gt;</span>
@@ -104,102 +97,76 @@
         <span class="nt">&lt;/script&gt;</span>
     <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</pre>
-</div>
-
+</pre></div>
 
 <h2>JS to Objective-C</h2>
 
 <p>Communication from JS to Objective-C is handled by the <code>sendMessage</code> function on the <code>WebViewJavascriptBridge</code> object. The function should only be called after the <code>WebViewJavascriptBridgeReady</code> event.</p>
 
-<div class="highlight">
-<pre><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'WebViewJavascriptBridgeReady'</span><span class="p">,</span> <span class="nx">onBridgeReady</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<div class="highlight"><pre><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'WebViewJavascriptBridgeReady'</span><span class="p">,</span> <span class="nx">onBridgeReady</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="kd">function</span> <span class="nx">onBridgeReady</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">WebViewJavascriptBridge</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'Hello from the magical land of Javascript. Unicorns! Rainbows! Robots! Substack!'</span><span class="p">);</span>
 <span class="p">}</span>
-</pre>
-</div>
-
+</pre></div>
 
 <p>Receipt of messages from JS is handled through the use of a delegate method.</p>
 
-<div class="highlight">
-<pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">conduit:</span><span class="p">(</span><span class="n">DIYConduit</span> <span class="o">*</span><span class="p">)</span><span class="nv">conduit</span> <span class="nf">receivedMessage:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">message</span>
+<div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">conduit:</span><span class="p">(</span><span class="n">DIYConduit</span> <span class="o">*</span><span class="p">)</span><span class="nv">conduit</span> <span class="nf">receivedMessage:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">message</span>
 <span class="p">{</span>
     <span class="n">NSLog</span><span class="p">(</span><span class="s">@"%@"</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
 <span class="p">}</span>
-</pre>
-</div>
-
+</pre></div>
 
 <h2>Objective-C to JS</h2>
 
 <p>Communication from Objective-C to JS is handled by the <code>sendMessage</code> method. This method can be invoked at any time, though messages will be queued until received by the web view.</p>
 
-<div class="highlight">
-<pre><span class="p">[</span><span class="n">conduit</span> <span class="nl">sendMessage:</span><span class="s">@"Hello from Objective-C. *Beep* *Buzz* ... *Ding!*"</span><span class="p">];</span>
-</pre>
-</div>
-
+<div class="highlight"><pre><span class="p">[</span><span class="n">conduit</span> <span class="nl">sendMessage:</span><span class="s">@"Hello from Objective-C. *Beep* *Buzz* ... *Ding!*"</span><span class="p">];</span>
+</pre></div>
 
 <p>Similar to how messages are sent from JS, messages are received after the <code>WebViewJavascriptBridgeReady</code> has been called via the <code>setMessageHandler</code>.</p>
 
-<div class="highlight">
-<pre><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'WebViewJavascriptBridgeReady'</span><span class="p">,</span> <span class="nx">onBridgeReady</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<div class="highlight"><pre><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'WebViewJavascriptBridgeReady'</span><span class="p">,</span> <span class="nx">onBridgeReady</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="kd">function</span> <span class="nx">onBridgeReady</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">WebViewJavascriptBridge</span><span class="p">.</span><span class="nx">setMessageHandler</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">alert</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
     <span class="p">});</span>
 <span class="p">}</span>
-</pre>
-</div>
-
+</pre></div>
 
 <h2>Custom HTTP Headers</h2>
 
 <p>Custom headers can be a bit of a pain when using a vanilla UIWebView, so DIYConduit provides convenience methods for creating and removing custom headers while persisting them through requests. Headers can be added and removed at will and will immediately reflected and persisted starting with the next HTTP request. Furthermore, headers are persisted during AJAX requests via a bit of javascript hackery through the bridge.</p>
 
-<div class="highlight">
-<pre><span class="p">[</span><span class="n">conduit</span> <span class="nl">addHeader:</span><span class="s">@"x-some-header"</span> <span class="nl">withValue:</span><span class="s">@"foo"</span><span class="p">];</span>
+<div class="highlight"><pre><span class="p">[</span><span class="n">conduit</span> <span class="nl">addHeader:</span><span class="s">@"x-some-header"</span> <span class="nl">withValue:</span><span class="s">@"foo"</span><span class="p">];</span>
 <span class="p">[</span><span class="n">conduit</span> <span class="nl">removeHeader:</span><span class="s">@"x-something-else"</span><span class="p">];</span>
-</pre>
-</div>
-
+</pre></div>
 
 <hr><h2>Methods</h2>
 
-<div class="highlight">
-<pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">loadRequest:</span><span class="p">(</span><span class="n">NSURLRequest</span> <span class="o">*</span><span class="p">)</span><span class="nv">request</span><span class="p">;</span>
+<div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">loadRequest:</span><span class="p">(</span><span class="n">NSURLRequest</span> <span class="o">*</span><span class="p">)</span><span class="nv">request</span><span class="p">;</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">loadHTMLString:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">html</span> <span class="nf">baseURL:</span><span class="p">(</span><span class="n">NSURL</span> <span class="o">*</span><span class="p">)</span><span class="nv">baseURL</span><span class="p">;</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">addHeader:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">key</span> <span class="nf">withValue:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">value</span><span class="p">;</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">removeHeader:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">key</span><span class="p">;</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">sendMessage:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">message</span><span class="p">;</span>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">resetMessageQueue</span><span class="p">;</span>
-</pre>
-</div>
-
+</pre></div>
 
 <h2>Delegate Methods</h2>
 
-<div class="highlight">
-<pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">conduit:</span><span class="p">(</span><span class="n">DIYConduit</span> <span class="o">*</span><span class="p">)</span><span class="nv">conduit</span> <span class="nf">receivedMessage:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">message</span><span class="p">;</span>
-</pre>
-</div>
-
+<div class="highlight"><pre><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">conduit:</span><span class="p">(</span><span class="n">DIYConduit</span> <span class="o">*</span><span class="p">)</span><span class="nv">conduit</span> <span class="nf">receivedMessage:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">message</span><span class="p">;</span>
+</pre></div>
 
 <h2>Properties</h2>
 
-<div class="highlight">
-<pre><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">assign</span><span class="p">)</span> <span class="kt">id</span> <span class="o">&lt;</span><span class="n">DIYConduitDelegate</span><span class="o">&gt;</span> <span class="n">delegate</span><span class="p">;</span>
+<div class="highlight"><pre><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">assign</span><span class="p">)</span> <span class="kt">id</span> <span class="o">&lt;</span><span class="n">DIYConduitDelegate</span><span class="o">&gt;</span> <span class="n">delegate</span><span class="p">;</span>
 <span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">UIWebView</span> <span class="o">*</span><span class="n">webView</span><span class="p">;</span>
 <span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">NSMutableDictionary</span> <span class="o">*</span><span class="n">headers</span><span class="p">;</span>
-</pre>
-</div>
-
+</pre></div>
 
 <hr><h2>ARC</h2>
 
-<p>ARC is not supported at this time. It is most certainly on the big 'ol "to-do" list though.</p>
+<p>Conduit as of v0.3.0 is built using ARC. If you are including DIYConduit in a project that <strong>does not</strong> use <a href="http://developer.apple.com/library/ios/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html">Automatic Reference Counting (ARC)</a>, you will need to set the <code>-fobjc-arc</code> compiler flag on all of the DIYConduit source files. To do this in Xcode, go to your active target and select the "Build Phases" tab. Now select all DIYConduit source files, press Enter, insert <code>-fobjc-arc</code> and then "Done" to enable ARC for DIYConduit.</p>
 
 <h2>Credits</h2>
 
