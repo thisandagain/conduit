@@ -10,22 +10,13 @@
 
 @implementation DIYViewController
 
-@synthesize conduit;
-@synthesize objcToJsButton;
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    //
-    
-    [conduit setDelegate:self];
-    [conduit addHeader:@"x-some-header" withValue:@"foo"];
-    [conduit removeHeader:@"x-some-other-header"];
-    [conduit loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://my.awesomecat.com/"]]];
-    
+    [self.conduit setDelegate:self];
     [self renderWebView];
 }
 
@@ -38,7 +29,7 @@
 
 - (void)renderWebView
 {
-    [conduit loadHTMLString:@""
+    [self.conduit loadHTMLString:@""
      "<!doctype html>"
      "<html><head>"
      "  <style type='text/css'>body { font-family: Helvetica; } h1 { color:#333; }</style>"
@@ -64,7 +55,7 @@
 
 - (IBAction)sendMessage:(id)sender
 {
-    [conduit sendMessage:@"hello from Objective-C button"];
+    [self.conduit sendMessage:@"hello from Objective-C button"];
 }
 
 #pragma mark - Conduit Delegate
@@ -78,8 +69,8 @@
 
 - (void)releaseObjects
 {
-    [conduit release]; conduit = nil;
-    [objcToJsButton release]; objcToJsButton = nil;
+    _conduit = nil;
+    _objcToJsButton = nil;
 }
 
 - (void)viewDidUnload
@@ -91,7 +82,6 @@
 - (void)dealloc
 {
     [self releaseObjects];
-    [super dealloc];
 }
 
 @end

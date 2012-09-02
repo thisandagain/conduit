@@ -386,6 +386,8 @@
 		C3AF163C158E752D00EA444D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "conduit/conduit-Prefix.pch";
 				INFOPLIST_FILE = "conduit/conduit-Info.plist";
@@ -398,6 +400,8 @@
 		C3AF163D158E752D00EA444D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "conduit/conduit-Prefix.pch";
 				INFOPLIST_FILE = "conduit/conduit-Info.plist";
