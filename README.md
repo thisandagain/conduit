@@ -133,7 +133,7 @@ Custom headers can be a bit of a pain when using a vanilla UIWebView, so DIYCond
 ---
 
 ## ARC
-ARC is not supported at this time. It is most certainly on the big 'ol "to-do" list though.
+Conduit as of v0.3.0 is built using ARC. If you are including DIYConduit in a project that **does not** use [Automatic Reference Counting (ARC)](http://developer.apple.com/library/ios/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html), you will need to set the `-fobjc-arc` compiler flag on all of the DIYConduit source files. To do this in Xcode, go to your active target and select the "Build Phases" tab. Now select all DIYConduit source files, press Enter, insert `-fobjc-arc` and then "Done" to enable ARC for DIYConduit.
 
 ## Credits
 Conduit's Objective-C to JS bridge is based on [WebViewJavascriptBridge](https://github.com/marcuswestin/WebViewJavascriptBridge) by Marcus Westin, Stepan Generalov and Sergio Campamá. 
