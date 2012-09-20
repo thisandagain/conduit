@@ -21,7 +21,7 @@
 
 @interface DIYConduit : UIView <DIYConduitBridgeDelegate>
 {
-    @private DIYConduitBridge *bridge;
+    @private DIYConduitBridge *_conduitBridge;
 }
 
 @property id <DIYConduitDelegate> delegate;

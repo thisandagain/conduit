@@ -11,7 +11,7 @@
 //
 
 @interface DIYConduit ()
-@property (nonatomic, retain) DIYConduitBridge *bridge;
+@property             DIYConduitBridge *conduitBridge;
 @property (readwrite) NSMutableDictionary *headers;
 @end
 
@@ -25,12 +25,12 @@
 {
     // Setup
     _webView        = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    _bridge         = [[DIYConduitBridge alloc] init];
+    _conduitBridge  = [[DIYConduitBridge alloc] init];
     _headers        = [[NSMutableDictionary alloc] init];
     
     // Assign delegates
-    self.bridge.delegate     = self;
-    self.webView.delegate    = self.bridge;
+    self.conduitBridge.delegate     = self;
+    self.webView.delegate           = self.conduitBridge;
     
     // Add to view
     [self addSubview:self.webView];
@@ -77,7 +77,7 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     dispatch_async(queue, ^{
         [self.webView loadRequest:[self generateMutableRequestWithRequest:request andHeaders:self.headers]];
-        [self.bridge pushRequestHeaders:self.headers];
+        [self.conduitBridge pushRequestHeaders:self.headers];
     });
 }
 
@@ -131,7 +131,7 @@
  */
 - (void)sendMessage:(NSString *)message
 {
-    [self.bridge sendMessage:message toWebView:self.webView];
+    [self.conduitBridge sendMessage:message toWebView:self.webView];
 }
 
 /**
@@ -141,7 +141,7 @@
  */
 - (void)resetMessageQueue
 {
-    [bridge resetQueue];
+    [self.conduitBridge resetQueue];
 }
 
 #pragma mark - Private methods
@@ -198,10 +198,6 @@
 - (void)dealloc
 {
     self.delegate = nil;
-    
-    _webView = nil;
-    _bridge = nil;
-    _headers = nil;
 }
 
 @end

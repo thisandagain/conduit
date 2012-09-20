@@ -43,6 +43,7 @@
      "          el.innerHTML = message;"
      "      });"
      "      WebViewJavascriptBridge.sendMessage('hello from the JS');"
+     "      WebViewJavascriptBridge.sendMessage('local app path: ' + window.applicationLocalPath);"
      "      var button = document.body.appendChild(document.createElement('button'));"
      "      button.innerHTML = 'Click me to send a message to ObjC';"
      "      button.onclick = button.ontouchup = function() { WebViewJavascriptBridge.sendMessage('hello from JS button'); };"
