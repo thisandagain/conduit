@@ -11,18 +11,17 @@
 //
 
 @interface DIYConduitBridge ()
-@property (nonatomic,strong) NSMutableArray *startupMessageQueue;
+
+@property NSMutableArray *startupMessageQueue;
+
 - (void)_flushMessageQueueFromWebView:(UIWebView *)webView;
 - (void)_doSendMessage:(NSString*)message toWebView:(UIWebView *)webView;
+
 @end
 
 //
 
 @implementation DIYConduitBridge
-
-@synthesize delegate = _delegate;
-@synthesize requestHeaders = _requestHeaders;
-@synthesize startupMessageQueue = _startupMessageQueue;
 
 static NSString *MESSAGE_SEPARATOR      = @"__wvjb_sep__";
 static NSString *CUSTOM_PROTOCOL_SCHEME = @"webviewjavascriptbridge";
@@ -109,6 +108,10 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView 
 {
+    // Grab local path
+    NSString *localPath = [[NSBundle mainBundle] resourcePath];
+    localPath = [localPath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    
     NSString *js = [NSString stringWithFormat:@";(function() {"
         "if (window.WebViewJavascriptBridge) { return; };"
         "var _readyMessageIframe,"
@@ -172,6 +175,8 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
         "     }"
         "})();"
         ""
+        "window.applicationLocalPath = \"%@\";"
+        ""
         "var doc = document;"
         "_createQueueReadyIframe(doc);"
         "var readyEvent = doc.createEvent('Events');"
@@ -181,7 +186,7 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
         "})();",
         MESSAGE_SEPARATOR,
         CUSTOM_PROTOCOL_SCHEME,
-        QUEUE_HAS_MESSAGE];
+        QUEUE_HAS_MESSAGE, localPath];
     
     // Send javascript adapter to the webview
     if (![[webView stringByEvaluatingJavaScriptFromString:@"typeof WebViewJavascriptBridge == 'object'"] isEqualToString:@"true"]) {
@@ -252,9 +257,6 @@ static NSString *QUEUE_HAS_MESSAGE      = @"queuehasmessage";
 - (void)dealloc 
 {
     self.delegate = nil;
-    
-    _requestHeaders = nil;
-    _startupMessageQueue = nil;
 }
 
 @end
