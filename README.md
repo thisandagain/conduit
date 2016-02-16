@@ -9,7 +9,7 @@ DIYConduit was created to address three pain points present within many iOS appl
 DIYConduit simply wraps these three pieces of functionality into a nice little library with a simple API and lets you go on about your business.
 
 ## Basic Use
-The fastest way to get up and running with DIYConduit is to take a look at the included example application. The XCode project file can be found in `example > conduit.xcodeproj`. But for those of you that put on your adventure pants today... read ahead:
+The fastest way to get up and running with DIYConduit is to take a look at the included example application. The Xcode project file can be found in `example > conduit.xcodeproj`. But for those of you that put on your adventure pants today... read ahead:
 
 YourViewController.h
 ```objective-c
